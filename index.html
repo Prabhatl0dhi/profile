@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Prabhat Kumar — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-trail" id="cursorTrail"></div>
+
+  <!-- Noise overlay -->
+  <div class="noise"></div>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="nav-logo">PK<span class="dot">.</span></div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-bg-text">ML</div>
+    <div class="hero-content">
+      <div class="hero-tag reveal">B.Tech CSE · AI & ML · VIT Bhopal</div>
+      <h1 class="hero-title reveal">
+        <span class="line">Prabhat</span>
+        <span class="line italic">Kumar</span>
+      </h1>
+      <p class="hero-sub reveal">Building intelligent systems from scratch — regression, segmentation, REST APIs and beyond.</p>
+      <div class="hero-cta reveal">
+        <a href="#projects" class="btn-primary">View Projects</a>
+        <a href="https://github.com/prabhat-lodhi" target="_blank" class="btn-ghost">GitHub ↗</a>
+      </div>
+    </div>
+    <div class="hero-stats reveal">
+      <div class="stat"><span class="stat-num">9.09</span><span class="stat-label">CGPA</span></div>
+      <div class="stat"><span class="stat-num">4+</span><span class="stat-label">Projects</span></div>
+      <div class="stat"><span class="stat-num">11+</span><span class="stat-label">CF Problems</span></div>
+    </div>
+    <div class="scroll-hint">scroll ↓</div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about section" id="about">
+    <div class="section-label">01 — About</div>
+    <div class="about-grid">
+      <div class="about-left reveal">
+        <h2 class="section-title">Curious builder,<br><em>ML enthusiast.</em></h2>
+      </div>
+      <div class="about-right reveal">
+        <p>I'm a second-year CSE (AI & ML) student at VIT Bhopal with a CGPA of <strong>9.09</strong>. I love building things from the ground up — whether it's implementing regression algorithms without any ML libraries or crafting lightweight neural architectures.</p>
+        <p>Currently exploring the intersection of medical AI, computer vision, and scalable backend systems. I believe in understanding the math before touching the framework.</p>
+        <div class="about-meta">
+          <div class="meta-item"><span class="meta-key">Location</span><span class="meta-val">Bhopal, India</span></div>
+          <div class="meta-item"><span class="meta-key">Degree</span><span class="meta-val">B.Tech CSE (AI & ML)</span></div>
+          <div class="meta-item"><span class="meta-key">Year</span><span class="meta-val">2024 – 2028</span></div>
+          <div class="meta-item"><span class="meta-key">Role</span><span class="meta-val">Floor Representative</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="skills section" id="skills">
+    <div class="section-label">02 — Skills</div>
+    <h2 class="section-title reveal">Technical<br><em>Arsenal</em></h2>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <div class="skill-icon">⌨</div>
+        <h3>Languages</h3>
+        <ul>
+          <li>Python</li>
+          <li>C++</li>
+          <li>Java</li>
+          <li>SQL</li>
+        </ul>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-icon">🧠</div>
+        <h3>Machine Learning</h3>
+        <ul>
+          <li>Linear / Poly Regression</li>
+          <li>Logistic & Softmax Reg.</li>
+          <li>KNN (from scratch)</li>
+          <li>CNNs & Segmentation</li>
+        </ul>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-icon">📦</div>
+        <h3>Libraries</h3>
+        <ul>
+          <li>NumPy · Pandas</li>
+          <li>Matplotlib</li>
+          <li>Scikit-learn</li>
+          <li>PyTorch</li>
+        </ul>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-icon">🛠</div>
+        <h3>Tools & CS Core</h3>
+        <ul>
+          <li>Git · Jupyter</li>
+          <li>Django REST</li>
+          <li>DSA</li>
+          <li>Operating Systems</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="projects section" id="projects">
+    <div class="section-label">03 — Projects</div>
+    <h2 class="section-title reveal">Selected<br><em>Work</em></h2>
+    <div class="projects-list">
+
+      <div class="project-card reveal" data-index="01">
+        <div class="project-header">
+          <div>
+            <span class="project-year">2025</span>
+            <h3 class="project-title">Lightweight Medical Image Segmentation</h3>
+            <p class="project-tech">ShuffleNet + SegNet · PyTorch · Kaggle</p>
+          </div>
+          <a href="https://www.kaggle.com/code/prabhatlodhi/exploring-diff-types-of-segmentatons" target="_blank" class="project-link">Kaggle ↗</a>
+        </div>
+        <p class="project-desc">Built a lightweight segmentation architecture fusing a ShuffleNet encoder with SegNet decoder. Achieved <strong>Dice Score: 0.8982</strong> and <strong>IoU: 0.8152</strong> on test data. Includes full preprocessing, normalization, and augmentation pipeline.</p>
+        <div class="project-tags">
+          <span>Computer Vision</span><span>Medical AI</span><span>Deep Learning</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal" data-index="02">
+        <div class="project-header">
+          <div>
+            <span class="project-year">2026</span>
+            <h3 class="project-title">Mediguard Agent</h3>
+            <p class="project-tech">ML Decision Logic · Python · Kaggle</p>
+          </div>
+          <a href="https://www.kaggle.com/code/prabhatlodhi/mediguard" target="_blank" class="project-link">Kaggle ↗</a>
+        </div>
+        <p class="project-desc">AI-powered medical guidance assistant for symptom analysis and health risk prediction. Designed structured ML-based decision logic to generate actionable healthcare recommendations.</p>
+        <div class="project-tags">
+          <span>Healthcare AI</span><span>ML Agent</span><span>Python</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal" data-index="03">
+        <div class="project-header">
+          <div>
+            <span class="project-year">2026</span>
+            <h3 class="project-title">Regression Models From Scratch</h3>
+            <p class="project-tech">NumPy · Pure Python · No ML Libraries</p>
+          </div>
+          <span class="project-link no-link">NumPy Only</span>
+        </div>
+        <p class="project-desc">Implemented Linear, Multiple, and Polynomial Regression using only NumPy. Manually derived gradient descent, cost functions, and studied convergence behaviour under varying learning rates.</p>
+        <div class="project-tags">
+          <span>From Scratch</span><span>NumPy</span><span>Mathematics</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal" data-index="04">
+        <div class="project-header">
+          <div>
+            <span class="project-year">2026</span>
+            <h3 class="project-title">REST API for Data Processing</h3>
+            <p class="project-tech">Django REST · Python · FOSEE Task</p>
+          </div>
+          <a href="https://github.com/Prabhatl0dhi/fosse_screening_task" target="_blank" class="project-link">GitHub ↗</a>
+        </div>
+        <p class="project-desc">Developed structured REST APIs for data processing with modular backend architecture. Designed scalable endpoint routing for the FOSEE Screening Task.</p>
+        <div class="project-tags">
+          <span>Django</span><span>REST API</span><span>Backend</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PROBLEM SOLVING -->
+  <section class="cp section" id="cp">
+    <div class="section-label">04 — Competitive Programming</div>
+    <div class="cp-content reveal">
+      <div class="cp-left">
+        <h2 class="section-title">Problem<br><em>Solver</em></h2>
+        <p>Active on Codeforces as <strong>prabhat_lodhi</strong> with consistent daily practice. Focus areas include arrays, subarrays, greedy techniques, and foundational data structures.</p>
+        <a href="https://codeforces.com/profile/prabhat_lodhi" target="_blank" class="btn-primary">Codeforces Profile ↗</a>
+      </div>
+      <div class="cp-right">
+        <div class="cp-stat-box">
+          <span class="big-num">11+</span>
+          <span>Algorithmic problems solved</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact section" id="contact">
+    <div class="section-label">05 — Contact</div>
+    <div class="contact-content reveal">
+      <h2 class="section-title">Let's<br><em>Connect.</em></h2>
+      <p class="contact-sub">Open to collaborations, internships, and interesting ML problems.</p>
+      <div class="contact-links">
+        <a href="mailto:prabhatlodhi1206@gmail.com" class="contact-item">
+          <span class="contact-icon">✉</span>
+          <span>prabhatlodhi1206@gmail.com</span>
+        </a>
+        <a href="https://github.com/prabhatl0dhi" target="_blank" class="contact-item">
+          <span class="contact-icon">⌥</span>
+          <span>GitHub</span>
+        </a>
+        <a href="https://codeforces.com/profile/prabhat_lodhi" target="_blank" class="contact-item">
+          <span class="contact-icon">⊞</span>
+          <span>Codeforces</span>
+        </a>
+        <a href="tel:+919528410927" class="contact-item">
+          <span class="contact-icon">☏</span>
+          <span>+91 9528410927</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <span>Prabhat Kumar © 2026</span>
+    <span>VIT Bhopal · CSE (AI & ML)</span>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
