@@ -164,5 +164,5 @@ document.querySelectorAll('.project-card').forEach(card => {
   });
 });
 
-console.log('%cPrabhat Kumar — Portfolio', 'color: #d4ff5c; font-size: 16px; font-weight: bold;');
-console.log('%cBuilt with ❤ | prabhatlodhi1206@gmail.com', 'color: #8a8680; font-size: 12px;');
+console.log('%cPrabhat Kumar — Portfolio', 'color: #0055ff; font-size: 16px; font-weight: bold;');
+console.log('%cBuilt with ❤ | prabhatlodhi1206@gmail.com', 'color: #111111; font-size: 12px;');
