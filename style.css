@@ -1,17 +1,24 @@
 /* ===========================
-   ROOT & RESET
+   ROOT & DYNAMIC THEMES
 =========================== */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  --bg: #f4f0ea; /* Warmer, natural paper tone */
-  --bg2: #ffffff; /* Pure white for cards to contrast against the paper */
+  /* DEFAULT LIGHT MODE (Paper) */
+  --bg: #f4f0ea;
+  --bg2: #ffffff;
   --fg: #111111;
   --fg-muted: #555555;
-  --accent: #0055ff; /* Aesthetic blue */
+  --accent: #0055ff;
   --accent2: #8b5cf6;
   --border: #111111;
   --card-bg: #ffffff;
+  
+  /* Noise & Vignette Variables */
+  --dot-color: rgba(17, 17, 17, 0.12);
+  --vignette: inset 0 0 120px rgba(17, 17, 17, 0.04);
+  --nav-glass: rgba(244, 240, 234, 0.95);
+
   --font-display: 'Syne', sans-serif;
   --font-serif: 'Instrument Serif', serif;
   --font-mono: 'DM Mono', monospace;
@@ -21,10 +28,24 @@
   --transition: 0.2s ease-in-out;
 }
 
+/* DARK MODE OVERRIDES */
+body.dark-mode {
+  --bg: #111111;
+  --bg2: #050505;
+  --fg: #f4f0ea;
+  --fg-muted: #8a8a8a;
+  --accent: #3b82f6; 
+  --border: #f4f0ea;
+  --card-bg: #050505;
+  
+  --dot-color: rgba(244, 240, 234, 0.12);
+  --vignette: inset 0 0 150px rgba(0, 0, 0, 0.9);
+  --nav-glass: rgba(17, 17, 17, 0.95);
+}
+
 html { scroll-behavior: smooth; font-size: 16px; }
 
 body {
-  /* Background moved to .noise layer */
   color: var(--fg);
   font-family: var(--font-display);
   cursor: none;
@@ -41,14 +62,15 @@ ul { list-style: none; }
 .noise {
   position: fixed;
   inset: 0;
-  background-color: var(--bg); /* Base paper color applied here */
+  background-color: var(--bg);
   background-image: 
-    radial-gradient(rgba(17, 17, 17, 0.12) 1.5px, transparent 1.5px),
-    radial-gradient(rgba(17, 17, 17, 0.12) 1.5px, transparent 1.5px);
+    radial-gradient(var(--dot-color) 1.5px, transparent 1.5px),
+    radial-gradient(var(--dot-color) 1.5px, transparent 1.5px);
   background-size: 12px 12px;
   background-position: 0 0, 6px 6px;
-  z-index: -1; /* Pushes the texture behind EVERYTHING */
-  box-shadow: inset 0 0 120px rgba(17, 17, 17, 0.04);
+  z-index: -1; 
+  box-shadow: var(--vignette);
+  transition: background-color var(--transition), box-shadow var(--transition);
 }
 
 /* ===========================
@@ -81,7 +103,7 @@ ul { list-style: none; }
 body:has(a:hover) .cursor, body:has(button:hover) .cursor { width: 20px; height: 20px; }
 
 /* ===========================
-   NAV
+   NAV & THEME TOGGLE
 =========================== */
 .nav {
   position: fixed;
@@ -93,11 +115,13 @@ body:has(a:hover) .cursor, body:has(button:hover) .cursor { width: 20px; height:
   z-index: 100;
   transition: background var(--transition), backdrop-filter var(--transition);
 }
+
 .nav.scrolled {
-  background: rgba(244, 240, 234, 0.95); /* Matches the new --bg paper tone */
+  background: var(--nav-glass); /* Dynamic variable applied */
   backdrop-filter: blur(12px);
   border-bottom: 2px solid var(--border);
 }
+
 .nav-logo {
   font-family: var(--font-display);
   font-size: 1.4rem;
@@ -105,6 +129,7 @@ body:has(a:hover) .cursor, body:has(button:hover) .cursor { width: 20px; height:
   letter-spacing: -1px;
 }
 .nav-logo .dot { color: var(--accent); }
+
 .nav-links { display: flex; gap: 2.5rem; }
 .nav-links a {
   font-size: 0.8rem;
@@ -115,8 +140,37 @@ body:has(a:hover) .cursor, body:has(button:hover) .cursor { width: 20px; height:
   transition: color 0.2s;
 }
 .nav-links a:hover { color: var(--accent); }
+
 .nav-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: none; }
 .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--fg); transition: var(--transition); }
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: var(--bg2);
+  border: 2px solid var(--border);
+  color: var(--fg);
+  font-size: 1.2rem;
+  box-shadow: 2px 2px 0px var(--border);
+  transition: transform 0.1s, box-shadow 0.1s, background var(--transition);
+  margin-left: auto;
+  margin-right: 1.5rem;
+}
+@media (min-width: 769px) {
+  .theme-toggle { margin-left: 0; margin-right: 0; }
+}
+.theme-toggle:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0px var(--border);
+  color: var(--accent);
+}
+.theme-toggle:active {
+  transform: translate(0, 0);
+  box-shadow: 0px 0px 0px var(--border);
+}
 
 /* ===========================
    HERO
@@ -143,6 +197,9 @@ body:has(a:hover) .cursor, body:has(button:hover) .cursor { width: 20px; height:
   pointer-events: none;
   letter-spacing: -0.05em;
   line-height: 1;
+}
+body.dark-mode .hero-bg-text {
+  -webkit-text-stroke: 1px rgba(244,240,234,0.08);
 }
 .hero-tag {
   font-family: var(--font-mono);
@@ -180,7 +237,7 @@ body:has(a:hover) .cursor, body:has(button:hover) .cursor { width: 20px; height:
   align-items: center;
   padding: 0.8rem 1.8rem;
   background: var(--accent);
-  color: var(--bg2);
+  color: #ffffff; /* Explicit white for contrast */
   font-weight: 700;
   font-size: 0.85rem;
   letter-spacing: 0.05em;
@@ -282,7 +339,7 @@ body:has(a:hover) .cursor, body:has(button:hover) .cursor { width: 20px; height:
 /* ===========================
    ABOUT
 =========================== */
-.about { background: transparent; } /* FIXED: Made transparent */
+.about { background: transparent; }
 .about-grid {
   display: grid;
   grid-template-columns: 1fr 1.3fr;
@@ -335,19 +392,19 @@ body:has(a:hover) .cursor, body:has(button:hover) .cursor { width: 20px; height:
   width: 48px;
   height: 48px;
   font-size: 1.4rem;
-  background: var(--bg); /* Uses the paper texture background */
-  border: 2px solid var(--border); /* Harsh black border */
-  color: var(--accent); /* Your aesthetic blue */
+  background: var(--bg); 
+  border: 2px solid var(--border);
+  color: var(--accent);
   margin-bottom: 1.5rem;
   font-family: var(--font-mono);
   font-weight: 700;
-  box-shadow: 3px 3px 0px var(--border); /* Mini brutalist shadow */
+  box-shadow: 3px 3px 0px var(--border); 
 }
 .skill-card li {
   font-size: 0.9rem;
   color: var(--fg-muted);
   padding: 0.35rem 0;
-  border-bottom: 1px solid rgba(17,17,17,0.1);
+  border-bottom: 1px solid rgba(128,128,128,0.2);
   transition: color 0.2s;
 }
 .skill-card li:last-child { border-bottom: none; }
@@ -359,7 +416,7 @@ body:has(a:hover) .cursor, body:has(button:hover) .cursor { width: 20px; height:
 .projects { background: transparent; }
 .projects-list { 
   display: grid; 
-  grid-template-columns: 1fr; /* Default to 1 column */
+  grid-template-columns: 1fr; 
   gap: 2rem; 
   background: transparent; 
   border: none; 
@@ -373,7 +430,7 @@ body:has(a:hover) .cursor, body:has(button:hover) .cursor { width: 20px; height:
   box-shadow: var(--brutal-shadow);
   transition: transform var(--transition), box-shadow var(--transition);
   position: relative;
-  overflow: hidden; /* Keeps the giant number inside */
+  overflow: hidden; 
 }
 
 /* Hover Effect */
@@ -389,15 +446,16 @@ body:has(a:hover) .cursor, body:has(button:hover) .cursor { width: 20px; height:
   bottom: -30px;
   right: -10px;
   font-family: var(--font-display);
-  font-size: 10rem; /* Massive graphic text */
+  font-size: 10rem;
   font-weight: 800;
   color: var(--border);
-  opacity: 0.04; /* Very subtle watermark */
+  opacity: 0.04; 
   line-height: 0.8;
   pointer-events: none;
   z-index: 0;
   letter-spacing: -0.05em;
 }
+body.dark-mode .project-card::before { opacity: 0.08; }
 
 /* Ensure text sits above the watermark */
 .project-header, .project-desc, .project-tags {
@@ -451,7 +509,7 @@ body:has(a:hover) .cursor, body:has(button:hover) .cursor { width: 20px; height:
   transition: background 0.2s, color 0.2s;
   box-shadow: 2px 2px 0px var(--border);
 }
-.project-link:hover { background: var(--accent); color: var(--bg2); border-color: var(--accent); }
+.project-link:hover { background: var(--accent); color: #ffffff; border-color: var(--accent); }
 .project-link.no-link { cursor: default; pointer-events: none; opacity: 0.5; box-shadow: none; }
 
 .project-desc {
@@ -479,52 +537,50 @@ body:has(a:hover) .cursor, body:has(button:hover) .cursor { width: 20px; height:
 
 /* ===========================
    THE FEATURED CARD INVERSION
-   (Makes the 1st card pop aggressively)
 =========================== */
 .project-card:nth-child(1) {
   background: var(--accent);
-  color: var(--bg2);
+  color: #ffffff;
   border-color: var(--border);
 }
 .project-card:nth-child(1) .project-title,
 .project-card:nth-child(1) .project-year,
 .project-card:nth-child(1) strong {
-  color: var(--bg2);
+  color: #ffffff;
 }
 .project-card:nth-child(1) .project-desc {
   color: rgba(255, 255, 255, 0.9);
 }
 .project-card:nth-child(1) .project-tech {
-  color: #a3e635; /* A bright lime green that pops on blue */
+  color: #a3e635;
 }
 .project-card:nth-child(1) .project-tags span {
   background: var(--accent);
-  color: var(--bg2);
-  border-color: var(--bg2);
+  color: #ffffff;
+  border-color: #ffffff;
 }
 .project-card:nth-child(1) .project-link {
   background: var(--accent);
-  color: var(--bg2);
-  border-color: var(--bg2);
-  box-shadow: 2px 2px 0px var(--bg2);
+  color: #ffffff;
+  border-color: #ffffff;
+  box-shadow: 2px 2px 0px #ffffff;
 }
 .project-card:nth-child(1):hover .project-link {
-  background: var(--bg2);
+  background: #ffffff;
   color: var(--accent);
 }
 .project-card:nth-child(1)::before {
-  color: var(--bg2);
-  opacity: 0.15; /* Slightly more visible on the dark background */
+  color: #ffffff;
+  opacity: 0.15;
 }
 
-/* Grid layout for Desktop: First item spans full width, others are half */
 @media (min-width: 900px) {
   .projects-list {
     grid-template-columns: 1fr 1fr;
   }
   .project-card:nth-child(1),
   .project-card:last-child {
-    grid-column: 1 / -1; /* Forces both the 1st and the last card to span the whole row */
+    grid-column: 1 / -1; 
   }
 }
 
@@ -573,7 +629,7 @@ body:has(a:hover) .cursor, body:has(button:hover) .cursor { width: 20px; height:
 /* ===========================
    CONTACT
 =========================== */
-.contact { background: transparent; } /* FIXED: Made transparent */
+.contact { background: transparent; }
 .contact-content { max-width: 700px; }
 .contact-sub {
   color: var(--fg-muted);
