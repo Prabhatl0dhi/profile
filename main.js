@@ -1,11 +1,37 @@
 // ===========================
 // CUSTOM CURSOR
 // ===========================
+
 const cursor = document.getElementById('cursor');
 const cursorTrail = document.getElementById('cursorTrail');
 let mouseX = 0, mouseY = 0;
 let trailX = 0, trailY = 0;
+// ===========================
+// DARK MODE TOGGLE
+// ===========================
+const themeToggle = document.getElementById('themeToggle');
+const themeIcon = themeToggle.querySelector('.icon');
 
+// Check for saved user preference in local storage
+const currentTheme = localStorage.getItem('theme');
+if (currentTheme === 'dark') {
+  document.body.classList.add('dark-mode');
+  themeIcon.textContent = '☼'; // Change icon to sun if dark mode is active
+}
+
+themeToggle.addEventListener('click', () => {
+  // Toggle the dark-mode class on the body
+  document.body.classList.toggle('dark-mode');
+  
+  // Check if dark mode is now active
+  if (document.body.classList.contains('dark-mode')) {
+    localStorage.setItem('theme', 'dark'); // Save preference
+    themeIcon.textContent = '☼'; // Switch icon to Sun
+  } else {
+    localStorage.setItem('theme', 'light'); // Save preference
+    themeIcon.textContent = '☾'; // Switch icon to Moon
+  }
+});
 document.addEventListener('mousemove', (e) => {
   mouseX = e.clientX;
   mouseY = e.clientY;
